@@ -3,4 +3,4 @@ Abandonned project because even if "playing perfectly", people who paid are over
 
 These Python scripts are a set of tools automate some tasks.
 
-![alt text](https://github.com/Benjamin-Loison/TravianAuto/raw/master/screens/map.png)
+![alt text](https://raw.githubusercontent.com/Benjamin-Loison/TravianAuto/main/screens/map.png)
