@@ -1,5 +1,5 @@
 # TravianAuto
-Abandonned project because even if "playing perfectly", people who paid are overly powerful on Travian.
+Abandonned project because even if "playing perfectly", people who paid are overly powerful on Travian. So head to my open-source decentralized version fo Travian on: https://github.com/Benjamin-Loison/Travian-blockchained
 
 These Python scripts are a set of tools for automating some tasks.
 
