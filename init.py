@@ -98,7 +98,7 @@ for ELEMS, GID in zip([WOODS, BRICKS, IRONS, CEREALS], [GID_WOOD, GID_BRICK, GID
         farms[elem] = GID
 
 def toAscii(s):
-    return s.replace('(', '').replace(')', '').replace('\u202c', '').replace('\u202d', '').replace("\n", "").replace(" ", "").replace('−', '-').replace('\t', '')
+    return s.replace('(', '').replace(')', '').replace('\u202c', '').replace('\u202d', '').replace('\n', "").replace(" ", "").replace('−', '-').replace('\t', '')
 
 natureNames = ["rat", "araignée", "serpent", "chauve-souris", "sanglier", "loup", "ours", "crocodile", "tigre", "éléphant"]
 natureDef = [[25, 20], [35, 40], [40, 60], [66, 50], [70, 33], [80, 70], [140, 200], [380, 240], [170, 250], [440, 520]]

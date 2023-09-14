@@ -135,7 +135,7 @@ for ELEMS, GID in zip([WOODS, BRICKS, IRONS, CEREALS], [GID_WOOD, GID_BRICK, GID
         farms[elem] = GID
 
 def toAscii(s):
-    return s.replace('(', '').replace(')', '').replace('\u202c', '').replace('\u202d', '').replace("\n", "").replace(" ", "").replace('−', '-').replace('\t', '')
+    return s.replace('(', '').replace(')', '').replace('\u202c', '').replace('\u202d', '').replace('\n', "").replace(" ", "").replace('−', '-').replace('\t', '')
 
 natureNames = ["rat", "araignée", "serpent", "chauve-souris", "sanglier", "loup", "ours", "crocodile", "tigre", "éléphant"]
 natureDef = [[25, 20], [35, 40], [40, 60], [66, 50], [70, 33], [80, 70], [140, 200], [380, 240], [170, 250], [440, 520]]
@@ -256,7 +256,7 @@ def resAtTime(villageId, a):
     s = (a-b).total_seconds()
     if s >= 0:
         ressourcesAtTime = [currentRessources[villageId][i] + int(production[villageId][i] * s / 3600) for i in range(4)]
-        """if innerButin != None:
+        """if innerButin is not None:
             comeBackTime = datetime.datetime.strptime("12 20 " + innerAt + " 2020 GMT", "%m %d %H:%M:%S %Y %Z")
             if (a - comeBackTime).total_seconds() >= 0:
                 #print("added")
@@ -288,7 +288,7 @@ def getTimeWhenEnoughRes(villageId, neededRessources):
         tim = datetime.datetime.now() + datetime.timedelta(seconds = s)
         #print(tim)
         ress = resAtTime(villageId, tim)
-        if ress == None:
+        if ress is None:
             return None, None, 0
         for i in range(4):
             if ress[i] < neededRessources[i]:
@@ -298,7 +298,7 @@ def getTimeWhenEnoughRes(villageId, neededRessources):
                 #print(tim, ress, s)
                 return tim, ress, s
 
-        #if ress != None:
+        #if ress is not None:
         #    print(tim, ress)
         s += 1
 
@@ -355,7 +355,7 @@ for farmIndex in range(CURRENT_FARMS_LEN):
     needRes = FARM_COST[farmType][farmLevel]
     _, _, s = getTimeWhenEnoughRes(needRes)
     #print(s, farmType, farmLevel, needRes)
-    if bestS == None or s < bestS:
+    if bestS is None or s < bestS:
         bestS = s
         bestId = farmIndex"""
 """print(bestS, bestId, CURRENT_FARMS[bestId - 1])
@@ -856,6 +856,7 @@ if False:
 
 # copied from above
 if False:
+	# url = "https://tx3.travian.fr/alliance/17/profile?st=members"
     url = TRAVIAN + "alliance/profile?st=members"
     X, Y = [], []
     driver.get(url)
@@ -1038,7 +1039,7 @@ def nextBuildingBuilt():
     for villageId in range(villagesLen):
         #village = villages[villageId]
         value = nextBuildingBuiltVillage(villageId)
-        if value != None and (next == None or value < next):
+        if value is not None and (next is None or value < next):
             next = value
     return next
 
@@ -1240,11 +1241,11 @@ def improveWithTraders(villageIdDep, villageIdArr, buildingName, mid = -1):
         if not improveRes:
             echo("Improve couldn't be a success")
         return [True, improveRes]
-    if sendRes == None:
+    if sendRes is None:
         gid = getGid(buildingName)
         timingConstruction = nextBuildingBuiltVillage(villageIdArr)
         echo("timingConstruction", timingConstruction, villageIdArr, gid)
-        if timingConstruction != None:
+        if timingConstruction is not None:
             echo("Waiting construction to finish in " + str(timingConstruction) + "seconds !")
             time.sleep(timingConstruction)
         return [False, improve(mid, gid, 2, villageIdArr)]#None
@@ -1252,7 +1253,7 @@ def improveWithTraders(villageIdDep, villageIdArr, buildingName, mid = -1):
 
 def improveAfterWithTraders(villageIdDep, villageIdArr, buildingName, mid = -1):
     timing = nextBuildingBuiltVillage(villageIdArr)
-    if timing != None:
+    if timing is not None:
         echo("Waiting construction to finish " + str(timing) + " seconds !")
         time.sleep(timing)
     return improveWithTraders(villageIdDep, villageIdArr, buildingName, mid)
@@ -1262,7 +1263,7 @@ def improveDirectlyAfterWithTraders(villageIdDep, villageIdArr, buildingName, mi
     timingTrader = int(3600 * d / SPEED_TRADER) + 1 # + 1 seems necessary sometimes
 
     timingConstruction = nextBuildingBuiltVillage(villageIdArr)
-    if timingConstruction != None:
+    if timingConstruction is not None:
         if timingConstruction > timingTrader:
             timeToWait = timingConstruction - timingTrader
             echo("Waiting optimized time to send traders (if needed) in " + str(timeToWait) + " seconds !")
@@ -1525,10 +1526,10 @@ def spendMyMoney(): # Just For Fun (2:36 AM 29/12/20) alias spendRessources (don
         constructing = getConstructingTime(villageId) # JUST BUILD INSTEAD OF WORK ON HEAVY VILLAGE method here
         timingTrader = timeBetween(SUPPORT_VILLAGE, villageId) # maxi > maxiMax
         #print(constructing, timingTrader) # constructing < timingTrader
-        if (constructing == None or (villageConstructingTime == None or constructing < villageConstructingTime)): # might need to change this if sub villages aren't at the same distance
+        if (constructing is None or (villageConstructingTime is None or constructing < villageConstructingTime)): # might need to change this if sub villages aren't at the same distance
             maxiMax = maxi
             villageMax = villageId
-            villageConstructingTime = constructing if constructing != None else 0
+            villageConstructingTime = constructing if constructing is not None else 0
     echo("Going to work on village " + str(villageMax))
     workOnDepotRes = depots[villageMax][0] > depots[villageMax][1]
     #if maxiMax > 0.8:
